@@ -1,0 +1,710 @@
+<!--
+/**
+ * MultiNode Tool v1.0.0
+ * * Copyright (C) 2026 Bartosz Karallus
+ * Contact: info@etb-apps.com | https://etb-apps.com
+ * * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ GLOBAL.TITLE }}</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background-color: #1e1e1e; color: #e0e0e0; padding: 2rem; max-width: 1200px; margin: 0 auto; line-height: 1.5; }
+        h1 { margin-bottom: 2rem; text-align: center; }
+
+        /* Two-column layout */
+        .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+        @media (max-width: 850px) { .layout { grid-template-columns: 1fr; } } /* Responsive for small screens */
+
+        /* Tarjetas base */
+        .card { background: #2a2a2a; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #444; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+
+        /* Accordion Styles (details/summary) */
+        details.card { padding: 0; overflow: hidden; transition: 0.3s; }
+        summary { padding: 1.2rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid transparent; user-select: none; list-style: none; }
+        summary::-webkit-details-marker { display: none; } /* Hide the arrow by default in Safari/Chrome */
+        details[open] summary { border-bottom-color: #444; background-color: #333; }
+        .summary-header { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 1.2rem; font-weight: bold; }
+        .accordion-body { padding: 1.5rem; }
+
+        /* Text colors */
+        .node-color { color: #8CC84B; margin: 0; }
+        .angular-color { color: #DD0031; margin: 0; }
+		.ionic-color { color: #3880ff; margin: 0; }
+		.capacitor-color { color: #11dce8; margin: 0; }
+		.typescript-color { color: #3178c6; margin: 0; }
+		.yarn-color { color: #2C8EBB; margin: 0; }
+		.firebase-color { color: #FFCA28; margin: 0; }
+		.nodemon-color { color: #76d04b; margin: 0; }
+		.pm2-color { color: #8E44AD; margin: 0; }
+		.serve-color { color: #00C7B7; margin: 0; }
+		.tsnode-color { color: #235A97; margin: 0; }
+		.pnpm-color { color: #f69220; margin: 0; }
+
+        /* Badges and panels */
+        .info-panel { background: #1a1a1a; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.9rem; }
+        .badge { background: #444; padding: 0.2rem 0.6rem; border-radius: 4px; font-family: monospace; color: #fff; margin-right: 0.5rem; display: inline-block; margin-bottom: 0.3rem; font-size: 0.9rem; font-weight: normal; }
+        .badge.current { background: #007acc; font-weight: bold; border: 1px solid #55b3ff; }
+
+        /* Forms and Buttons */
+        input, button { padding: 0.6rem; border: none; border-radius: 4px; box-sizing: border-box; }
+        input { background: #333; color: white; width: calc(100% - 150px); border: 1px solid #555; }
+        button { background: #444; color: white; cursor: pointer; transition: 0.2s; width: 140px; }
+        button.action-btn { background: #007acc; font-weight: bold; }
+        button:hover { filter: brightness(1.2); }
+        .btn-clear { width: auto; background: #c0392b; padding: 0.3rem 0.8rem; font-size: 0.85rem; }
+        .btn-clear:hover { background: #e74c3c; }
+        .input-group { display: flex; gap: 10px; margin-top: 1rem; }
+
+		.terminal-col { position: sticky; top: 2rem; height: calc(100vh - 4rem); display: flex; flex-direction: column; }
+
+		/* Fabric Info */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(3px); }
+        .modal-box { background: #2a2a2a; padding: 2rem; border-radius: 8px; width: 90%; max-width: 500px; border: 1px solid #444; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5); line-height: 1.6; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; cursor: pointer; color: #aaa; font-size: 1.5rem; border: none; background: transparent; }
+        .modal-close:hover { color: #fff; }
+        .modal-title { margin-top: 0; color: #fff; border-bottom: 1px solid #444; padding-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+		#modalIcon { width: 40px; height: auto; }
+        .info-icon { font-size: 1.1rem; cursor: pointer; color: #aaa; margin-left: 0.5rem; background: none; border: none; padding: 0; transition: 0.2s; width: 25px; height: 25px; }
+        .info-icon:hover { color: #fff; transform: scale(1.2); }
+
+        /* Terminal */
+        .terminal-container { padding: 1.5rem; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+        .terminal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 0.5rem; margin-bottom: 1rem; margin-top: 0; }
+        #log { background: #0c0c0c; color: #0f0; padding: 1rem; border-radius: 4px; font-family: monospace; white-space: pre-wrap; flex-grow: 1; overflow-y: auto; border: 1px solid #333; word-wrap: break-word; font-size: 0.9rem; }
+        .loading { color: #888; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid #444; padding-bottom: 1rem;">
+		<h1 style="margin: 0;">{{ GLOBAL.TITLE }}</h1>
+		<select id="langSelector" onchange="setLanguage(this.value)" style="padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer;"></select>
+	</div>
+
+    <div class="layout">
+        <div class="tools-col">
+
+            <details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="node-color">{{ TOOLS.NODE.TITLE }} <button class="info-icon" onclick="openModal(event, 'node')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="node-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION }}:</strong> <span id="node-current" class="loading">{{ INFO.LOADING }}</span></div>
+                        <div style="margin-top: 10px;"><strong>{{ INFO.INSTALLED }}:</strong> <div id="node-installed" style="margin-top: 5px;" class="loading">{{ INFO.LOADING }}</div></div>
+                    </div>
+                    <button onclick="fetchAvailable('node')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="nodeVersion" placeholder="{{ TOOLS.NODE.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('node')">{{ BTNS.INSTALL_USE }}</button>
+                    </div>
+                </div>
+            </details>
+
+            <details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="angular-color">{{ TOOLS.ANGULAR.TITLE }} <button class="info-icon" onclick="openModal(event, 'angular')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="angular-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="angular-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('angular')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="angularVersion" placeholder="{{ TOOLS.ANGULAR.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('angular')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="ionic-color">{{ TOOLS.IONIC.TITLE }} <button class="info-icon" onclick="openModal(event, 'ionic')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="ionic-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="ionic-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('ionic')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="ionicVersion" placeholder="{{ TOOLS.IONIC.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('ionic')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="capacitor-color">{{ TOOLS.CAPACITOR.TITLE }} <button class="info-icon" onclick="openModal(event, 'capacitor')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="capacitor-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="capacitor-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('capacitor')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="capacitorVersion" placeholder="{{ TOOLS.CAPACITOR.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('capacitor')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="typescript-color">{{ TOOLS.TYPESCRIPT.TITLE }} <button class="info-icon" onclick="openModal(event, 'typescript')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="typescript-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="typescript-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('typescript')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="typescriptVersion" placeholder="{{ TOOLS.TYPESCRIPT.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('typescript')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="yarn-color">{{ TOOLS.YARN.TITLE }} <button class="info-icon" onclick="openModal(event, 'yarn')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="yarn-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="yarn-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('yarn')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="yarnVersion" placeholder="{{ TOOLS.YARN.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('yarn')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="firebase-color">{{ TOOLS.FIREBASE.TITLE }} <button class="info-icon" onclick="openModal(event, 'firebase')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="firebase-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="firebase-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('firebase')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="firebaseVersion" placeholder="{{ TOOLS.FIREBASE.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('firebase')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="nodemon-color">{{ TOOLS.NODEMON.TITLE }} <button class="info-icon" onclick="openModal(event, 'nodemon')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="nodemon-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="nodemon-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('nodemon')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="nodemonVersion" placeholder="{{ TOOLS.NODEMON.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('nodemon')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="pm2-color">{{ TOOLS.PM2.TITLE }} <button class="info-icon" onclick="openModal(event, 'pm2')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="pm2-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="pm2-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('pm2')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="pm2Version" placeholder="{{ TOOLS.PM2.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('pm2')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="serve-color">{{ TOOLS.SERVE.TITLE }} <button class="info-icon" onclick="openModal(event, 'serve')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="serve-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="serve-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('serve')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="serveVersion" placeholder="{{ TOOLS.SERVE.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('serve')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="tsnode-color">{{ TOOLS.TSNODE.TITLE }} <button class="info-icon" onclick="openModal(event, 'tsnode')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="tsnode-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="tsnode-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('tsnode')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="tsnodeVersion" placeholder="{{ TOOLS.TSNODE.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('tsnode')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+			<details class="card">
+                <summary>
+                    <div class="summary-header">
+                        <span class="pnpm-color">{{ TOOLS.PNPM.TITLE }} <button class="info-icon" onclick="openModal(event, 'pnpm')" title="{{ BTNS.INFORMATION }}">&#9432;</button></span>
+                        <span id="pnpm-summary-badge" class="badge loading">{{ INFO.LOADING }}</span>
+                    </div>
+                </summary>
+                <div class="accordion-body">
+                    <div class="info-panel">
+                        <div><strong>{{ INFO.ACTUAL_VERSION_GLOBAL }}:</strong> <span id="pnpm-current" class="loading">{{ INFO.LOADING }}</span></div>
+                    </div>
+                    <button onclick="fetchAvailable('pnpm')">{{ BTNS.AVAILABLE }}</button>
+                    <div class="input-group">
+                        <input type="text" id="pnpmVersion" placeholder="{{ TOOLS.PNPM.PLACEHOLDER }}">
+                        <button class="action-btn" onclick="switchEnv('pnpm')">{{ BTNS.INSTALL_VERSION }}</button>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="terminal-col">
+            <div class="card terminal-container">
+                <h2 class="terminal-header">
+                    <span style="color: #aaa; font-size: 1.2rem;">{{ GLOBAL.TERMINAL_TITLE }}</span>
+                    <button class="btn-clear" onclick="clearLog()">{{ BTNS.CLEAR_TERMINAL }}</button>
+                </h2>
+                <div id="log">{{ TERMINAL.START }}</div>
+            </div>
+        </div>
+    </div>
+
+	<div class="modal-overlay" id="infoModal" onclick="closeModal(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(event)">&times;</button>
+            <h2 class="modal-title"><img src="" id="modalIcon" /> <span id="modalTitle">{{ MODAL.TOOL }}</span></h2>
+            <p style="color: #ccc;"><strong>{{ MODAL.DESCRIPTION }}:</strong> <span id="modalDesc"></span></p>
+            <p style="color: #ccc;"><strong>{{ MODAL.USE }}:</strong> <span id="modalUse"></span></p>
+            <p style="margin-top: 1.5rem;">🔗 <a id="modalRepo" href="#" target="_blank" style="color: #55b3ff; text-decoration: none; font-weight: bold;">{{ MODAL.REPOSITORY }}</a></p>
+        </div>
+    </div>
+
+    <script>
+		let originalHTML = '';
+		let firstLoad = true;
+
+		// At the beginning of your script
+        window.addEventListener('DOMContentLoaded', () => {
+            originalHTML = document.body.innerHTML; // We save the template with the {{ }}
+			getLanguages();
+        });
+
+        const logEl = document.getElementById('log');
+
+		let currentTranslations = {};
+        let currentLang = localStorage.getItem('appLang') || navigator.language.split('-')[0] || 'es';
+
+        // Resolves nested keys (e.g., t(‘GLOBAL.SAMPLE’))
+        function t(key, vars = {}) {
+            let template = key.split('.').reduce((obj, k) => (obj || {})[k], currentTranslations) || key;
+
+			// Replace {{variable}} with the value of the vars object
+			return template.replace(/\{\{(\w+)\}\}/g, (match, varName) => {
+				return vars[varName] !== undefined ? vars[varName] : match;
+			});
+        }
+
+		// Comprobamos y cargamos los idiomas disponibles
+		async function getLanguages() {
+			try {
+				const langs = await fetch('/api/info/languages').then(r => r.json());
+				const selectDom = document.querySelector('#langSelector');
+
+				for (const i of langs) {
+					const dom = document.createElement('option');
+					dom.value = i.code;
+					dom.textContent = i.name;
+					if (i.code === currentLang) {
+						dom.selected = true;
+					}
+					selectDom.appendChild(dom);
+				}
+			} catch (err) {
+				console.error(t('LOG.ERROR_LANG_LOAD', { error: err }));
+			}
+		}
+
+        // Load the JSON, update the state, and update the DOM
+        async function setLanguage(lang) {
+            try {
+                const res = await fetch(`/locales/${lang}.json`);
+                if (!res.ok) throw new Error('JSON not found');
+                currentTranslations = await res.json();
+
+                currentLang = lang;
+                localStorage.setItem('appLang', lang);
+                document.getElementById('langSelector').value = lang;
+
+                const langUpdate = await fetch('/api/lang/switch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ lang })
+                });
+
+                // CORRECTION: The response must be parsed into JSON
+                const data = await langUpdate.json();
+
+                if (data.success) {
+                    updateDOM();
+					if (!firstLoad) {
+						log(t('TERMINAL.LANGUAGE_CHANGE', { lang: lang.toUpperCase() }));
+					}
+                }
+            } catch (err) {
+                console.error(t('LOG.ERROR_LANG_CHANGE', { lang }));
+            }
+        }
+
+        // Function that searches for the pattern {{ KEY }} and replaces it with the JSON value
+        function updateDOM() {
+            // 1. Translate the tab title (specifically for the head section)
+            const titleEl = document.querySelector('title');
+            if (titleEl) {
+                // We save the original template the first time
+                if (!titleEl.originalTemplate && /\{\{\s*[\w.]+\s*\}\}/.test(titleEl.innerText)) {
+                    titleEl.originalTemplate = titleEl.innerText;
+                }
+                // We always translate from the original document
+                if (titleEl.originalTemplate) {
+                    document.title = titleEl.originalTemplate.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => t(key));
+                }
+            }
+
+            // 2. Iterate through all the text nodes in the entire document
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+
+            while (node = walker.nextNode()) {
+                // We save the template in the memory node itself the first time
+                if (!node.originalTemplate && /\{\{\s*[\w.]+\s*\}\}/.test(node.nodeValue)) {
+                    node.originalTemplate = node.nodeValue;
+                }
+
+                // If this node has a saved template, we apply it
+                if (node.originalTemplate) {
+                    node.nodeValue = node.originalTemplate.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => t(key));
+                }
+            }
+
+            // 3. Translate Attributes (Placeholders, Titles, Alt Text)
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                ['placeholder', 'title', 'alt'].forEach(attr => {
+                    if (el.hasAttribute(attr)) {
+                        const origAttr = 'data-orig-' + attr;
+
+                        // We save the original attribute the first time
+                        if (!el.hasAttribute(origAttr) && /\{\{\s*[\w.]+\s*\}\}/.test(el.getAttribute(attr))) {
+                            el.setAttribute(origAttr, el.getAttribute(attr));
+                        }
+
+                        // We always translate from the original source
+                        if (el.hasAttribute(origAttr)) {
+                            const template = el.getAttribute(origAttr);
+                            el.setAttribute(attr, template.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => t(key)));
+                        }
+                    }
+                });
+            });
+        }
+
+        function openModal(event, toolId) {
+            event.stopPropagation(); // Prevents the accordion from opening/closing
+			const base = `TOOLS.${toolId.toUpperCase()}.`;
+			document.getElementById('modalTitle').innerText = t(base + 'TITLE');
+			document.getElementById('modalIcon').src = t(base + 'ICON');
+			document.getElementById('modalIcon').alt = t(base + 'TITLE');
+			document.getElementById('modalDesc').innerText = t(base + 'DESCRIPTION');
+			document.getElementById('modalUse').innerText = t(base + 'USE');
+			document.getElementById('modalRepo').href = t(base + 'REPO');
+			document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // We use safe concatenation with “+” to avoid inspector errors
+        function log(msg) {
+            logEl.innerText = msg + '\n\n' + logEl.innerText;
+        }
+
+        function clearLog() {
+            logEl.innerText = t('TERMINAL.CLEAR');
+        }
+
+        async function initData() {
+			firstLoad = false;
+            try {
+                // Fetch Node Info
+                const nodeRes = await fetch('/api/info/node').then(r => r.json());
+
+                // Update accordion header
+                document.getElementById('node-summary-badge').className = 'badge current';
+                document.getElementById('node-summary-badge').innerText = 'v' + nodeRes.current;
+
+                // Refresh the interior
+                document.getElementById('node-current').innerHTML = '<span class="badge current">' + nodeRes.current + '</span>';
+                const installedHtml = nodeRes.installed.length > 0
+                    ? nodeRes.installed.map(v =>
+                        v === nodeRes.current ? '<span class="badge current">' + v + '</span>' : '<span class="badge">' + v + '</span>'
+                      ).join('')
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_DETECTED') + '</span>';
+                document.getElementById('node-installed').innerHTML = installedHtml;
+
+                // Fetch Angular Info
+                const angRes = await fetch('/api/info/angular').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('angular-summary-badge').className = angRes.current ? 'badge current' : 'badge';
+                document.getElementById('angular-summary-badge').innerText = angRes.current ? 'v' + angRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('angular-current').innerHTML = angRes.current
+                    ? '<span class="badge current">' + angRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch Ionic Info
+                const ionicRes = await fetch('/api/info/ionic').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('ionic-summary-badge').className = ionicRes.current ? 'badge current' : 'badge';
+                document.getElementById('ionic-summary-badge').innerText = ionicRes.current ? 'v' + ionicRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('ionic-current').innerHTML = ionicRes.current
+                    ? '<span class="badge current">' + ionicRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch Capacitor
+                const capRes = await fetch('/api/info/capacitor').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('capacitor-summary-badge').className = capRes.current ? 'badge current' : 'badge';
+                document.getElementById('capacitor-summary-badge').innerText = capRes.current ? 'v' + capRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('capacitor-current').innerHTML = capRes.current
+                    ? '<span class="badge current">' + capRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch TypeScript
+                const tsRes = await fetch('/api/info/typescript').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('typescript-summary-badge').className = tsRes.current ? 'badge current' : 'badge';
+                document.getElementById('typescript-summary-badge').innerText = tsRes.current ? 'v' + tsRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('typescript-current').innerHTML = tsRes.current
+                    ? '<span class="badge current">' + tsRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch Yarn
+                const yarnRes = await fetch('/api/info/yarn').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('yarn-summary-badge').className = yarnRes.current ? 'badge current' : 'badge';
+                document.getElementById('yarn-summary-badge').innerText = yarnRes.current ? 'v' + yarnRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('yarn-current').innerHTML = yarnRes.current
+                    ? '<span class="badge current">' + yarnRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch Firebase
+                const fbRes = await fetch('/api/info/firebase').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('firebase-summary-badge').className = fbRes.current ? 'badge current' : 'badge';
+                document.getElementById('firebase-summary-badge').innerText = fbRes.current ? 'v' + fbRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('firebase-current').innerHTML = fbRes.current
+                    ? '<span class="badge current">' + fbRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch Nodemon
+                const nodemonRes = await fetch('/api/info/nodemon').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('nodemon-summary-badge').className = nodemonRes.current ? 'badge current' : 'badge';
+                document.getElementById('nodemon-summary-badge').innerText = nodemonRes.current ? 'v' + nodemonRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('nodemon-current').innerHTML = nodemonRes.current
+                    ? '<span class="badge current">' + nodemonRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Refresh the interior
+                document.getElementById('nodemon-current').innerHTML = nodemonRes.current
+                    ? '<span class="badge current">' + nodemonRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+                // Fetch PM2
+                const pm2Res = await fetch('/api/info/pm2').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('pm2-summary-badge').className = pm2Res.current ? 'badge current' : 'badge';
+                document.getElementById('pm2-summary-badge').innerText = pm2Res.current ? 'v' + pm2Res.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('pm2-current').innerHTML = pm2Res.current
+                    ? '<span class="badge current">' + pm2Res.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch Serve
+                const serveRes = await fetch('/api/info/serve').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('serve-summary-badge').className = serveRes.current ? 'badge current' : 'badge';
+                document.getElementById('serve-summary-badge').innerText = serveRes.current ? 'v' + serveRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('serve-current').innerHTML = serveRes.current
+                    ? '<span class="badge current">' + serveRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch ts-node
+                const tsNodeRes = await fetch('/api/info/tsnode').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('tsnode-summary-badge').className = tsNodeRes.current ? 'badge current' : 'badge';
+                document.getElementById('tsnode-summary-badge').innerText = tsNodeRes.current ? 'v' + tsNodeRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('tsnode-current').innerHTML = tsNodeRes.current
+                    ? '<span class="badge current">' + tsNodeRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+				// Fetch pnpm
+                const pnpmRes = await fetch('/api/info/pnpm').then(r => r.json());
+
+                // Update the accordion header
+                document.getElementById('pnpm-summary-badge').className = pnpmRes.current ? 'badge current' : 'badge';
+                document.getElementById('pnpm-summary-badge').innerText = pnpmRes.current ? 'v' + pnpmRes.current : t('INFO.NOT_INSTALLED');
+
+                // Refresh the interior
+                document.getElementById('pnpm-current').innerHTML = pnpmRes.current
+                    ? '<span class="badge current">' + pnpmRes.current + '</span>'
+                    : '<span style="color: #ffaa00;">' + t('INFO.NOT_INSTALLED_GLOBAL') + '</span>';
+
+            } catch (err) {
+                log(t('LOG.ERROR_SYSTEM', { error: err.message }));
+			}
+        }
+
+        async function fetchAvailable(type) {
+            log(t('TERMINAL.CHEKING', { tool: type }));
+            try {
+                const res = await fetch('/api/available/' + type);
+                const data = await res.json();
+
+                if (data.versions && data.versions.length > 0) {
+                    const listFormatted = data.versions.map(v => '  - ' + v).join('\n');
+                    log('--- ' + t('TERMINAL.AVAILABLE', { tool: type.toUpperCase() }) + ' ---\n' + listFormatted + '\n-----------------------');
+                } else {
+                    log(t('TERMINAL.NO_VERSIONS'));
+                }
+            } catch (err) {
+                log(t('TERMINAL.ERROR', { error: err.message }));
+            }
+        }
+
+        async function switchEnv(type) {
+            const version = document.getElementById(type + 'Version').value.trim();
+            if (!version) return log('⚠️ ' + t('TERMINAL.ENTER_VALID'));
+
+            log(t('TERMINAL.EXECUTING', { tool: type, version }));
+
+            try {
+                const res = await fetch('/api/switch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type, version })
+                });
+                const data = await res.json();
+                log('[' + type.toUpperCase() + '] ' + data.message);
+
+                // Refresh the accordion data after the change
+                setTimeout(initData, 2000);
+            } catch (err) {
+                log('❌ ' + t('TERMINAL.CONN_ERROR'));
+            }
+        }
+
+		// Set the language first, then load the data
+        setLanguage(currentLang).then(() => initData());
+    </script>
+</body>
+</html>

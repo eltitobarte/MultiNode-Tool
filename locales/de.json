@@ -1,0 +1,157 @@
+{
+  "LANGUAGE": "Deutsch",
+  "GLOBAL": {
+    "TITLE": "Umgebungsmanager",
+    "TERMINAL_TITLE": "Terminal-Ausgabe"
+  },
+  "INFO": {
+    "ACTUAL_VERSION": "Aktuelle Version",
+    "ACTUAL_VERSION_GLOBAL": "Aktuelle Version (Global)",
+    "INSTALLED": "Installiert",
+    "NOT_INSTALLED": "Nicht installiert",
+    "NOT_DETECTED": "Nicht erkannt",
+    "NOT_INSTALLED_GLOBAL": "Nicht global installiert",
+    "LOADING": "Wird geladen..."
+  },
+  "MODAL": {
+    "TOOL": "Werkzeug",
+    "DESCRIPTION": "Beschreibung",
+    "USE": "Verwendung",
+    "REPOSITORY": "Repository / Offizielle Dokumentation"
+  },
+  "BTNS": {
+    "AVAILABLE": "Verfügbare anzeigen",
+    "INSTALL_USE": "Installieren / Verwenden",
+    "INSTALL_VERSION": "Version installieren",
+    "CLEAR_TERMINAL": "Konsole leeren",
+    "INFORMATION": "Informationen"
+  },
+  "TERMINAL": {
+    "START": "System initialisiert. Bereit zum Betrieb.",
+    "CLEAR": "Konsole geleert.",
+    "CHEKING": "Überprüfe verfügbare Versionen für {{tool}}... (dies kann eine Weile dauern)",
+    "NO_VERSIONS": "Keine Versionen für {{tool}} gefunden.",
+    "AVAILABLE": "VERFÜGBAR ({{tool}})",
+    "ERROR": "Fehler beim Abrufen der Versionen: {{error}}",
+    "ENTER_VALID": "Bitte gib eine gültige Version ein.",
+    "EXECUTING": "Führe Befehl für {{tool}} v{{version}} aus... bitte warten.",
+    "CONN_ERROR": "Verbindungsfehler",
+    "LANGUAGE_CHANGE": "Sprache auf {{lang}} aktualisiert"
+  },
+  "TOOLS": {
+    "NODE": {
+      "TITLE": "Node.js (NVM)",
+      "PLACEHOLDER": "Z. B. 20.11.0",
+      "DESCRIPTION": "Plattformübergreifende JavaScript-Laufzeitumgebung.",
+      "USE": "Code auf dem Server ausführen. NVM ermöglicht das Ändern der globalen Version im laufenden Betrieb.",
+      "REPO": "https://github.com/nvm-sh/nvm",
+      "ICON": "https://nodejs.org/static/images/favicons/favicon.png"
+    },
+    "ANGULAR": {
+      "TITLE": "Angular CLI",
+      "PLACEHOLDER": "Z. B. 17.1.0",
+      "DESCRIPTION": "Offizielle Angular-Befehlszeilenschnittstelle (CLI).",
+      "USE": "Initialisieren, entwickeln, strukturieren (scaffolding) und verpacken von Angular-Anwendungen.",
+      "REPO": "https://github.com/angular/angular-cli",
+      "ICON": "https://angular.dev/assets/icons/favicon-48x48.png"
+    },
+    "IONIC": {
+      "TITLE": "Ionic CLI",
+      "PLACEHOLDER": "Z. B. 7.2.0",
+      "DESCRIPTION": "Globales Tool zur Verwaltung von Ionic-Projekten.",
+      "USE": "Projekte von Grund auf neu erstellen, lokale Entwicklungsserver starten und mit der Cloud synchronisieren.",
+      "REPO": "https://github.com/ionic-team/ionic-cli",
+      "ICON": "https://ionicframework.com/favicon-96x96.png"
+    },
+    "CAPACITOR": {
+      "TITLE": "Capacitor CLI",
+      "PLACEHOLDER": "Z. B. 6.0.0",
+      "DESCRIPTION": "Die moderne native Brücke für Web-Apps.",
+      "USE": "Web-Apps (Angular, React, Vue) in native iOS- und Android-Binärdateien verpacken.",
+      "REPO": "https://capacitorjs.com/",
+      "ICON": "https://capacitorjs.com/favicon-96x96.png"
+    },
+    "TYPESCRIPT": {
+      "TITLE": "TypeScript",
+      "PLACEHOLDER": "Z. B. 5.4.5",
+      "DESCRIPTION": "Von Microsoft entwickelte typisierte Obermenge von JavaScript.",
+      "USE": "Statische Typen validieren und modernen Code (ESNext) zu Standard-JavaScript kompilieren.",
+      "REPO": "https://www.typescriptlang.org/",
+      "ICON": "https://typescriptlang.org/favicon-32x32.png?v=8944a05a8b601855de116c8a56d3b3ae"
+    },
+    "YARN": {
+      "TITLE": "Yarn",
+      "PLACEHOLDER": "Z. B. 1.22.22",
+      "DESCRIPTION": "Schneller und deterministischer Abhängigkeitsmanager.",
+      "USE": "Alternative zu npm, die Caching für schnellere und konsistentere Installationen nutzt.",
+      "REPO": "https://yarnpkg.com/",
+      "ICON": "https://yarnpkg.com/img/yarn-favicon.svg"
+    },
+    "FIREBASE": {
+      "TITLE": "Firebase CLI",
+      "PLACEHOLDER": "Z. B. 13.0.0",
+      "DESCRIPTION": "Manager für Google Firebase-Dienste.",
+      "USE": "Statisches Hosting bereitstellen, Echtzeit-Datenbanken konfigurieren und lokale Emulatoren ausführen.",
+      "REPO": "https://firebase.google.com/docs/cli",
+      "ICON": "https://www.gstatic.com/devrel-devsite/prod/v6ae673272608590539f8a06b3f3271c0f5688cde07499d1c9e644aeb66c8c060/firebase/images/favicon.png"
+    },
+    "NODEMON": {
+      "TITLE": "Nodemon",
+      "PLACEHOLDER": "Z. B. 3.1.0",
+      "DESCRIPTION": "Hot-Reload-Monitor für Node.js.",
+      "USE": "Projektdateien überwachen und den Prozess beim Speichern einer Änderung automatisch neu starten.",
+      "REPO": "https://nodemon.io/",
+      "ICON": "https://nodemon.io/nodemon.svg"
+    },
+    "PM2": {
+      "TITLE": "PM2",
+      "PLACEHOLDER": "Z. B. 5.3.1",
+      "DESCRIPTION": "Prozessmanager und Load Balancer.",
+      "USE": "Server im Hintergrund am Laufen halten (Daemon), nach Abstürzen neu starten und den Verbrauch überwachen.",
+      "REPO": "https://pm2.keymetrics.io/",
+      "ICON": "https://pm2.keymetrics.io/favicon.ico"
+    },
+    "SERVE": {
+      "TITLE": "Serve (Statisches HTTP)",
+      "PLACEHOLDER": "Z. B. 14.2.1",
+      "DESCRIPTION": "Ultraleichter statischer HTTP-Server.",
+      "USE": "Den von einem Framework generierten 'dist'- oder 'build'-Ordner bereitstellen, um die Produktionsversion lokal zu testen.",
+      "REPO": "https://github.com/vercel/serve",
+      "ICON": "https://raw.githubusercontent.com/vercel/serve/main/media/banner.png"
+    },
+    "TSNODE": {
+      "TITLE": "ts-node",
+      "PLACEHOLDER": "Z. B. 10.9.2",
+      "DESCRIPTION": "Direkte Ausführungs-Engine für TypeScript.",
+      "USE": "Ermöglicht das direkte Ausführen von .ts-Dateien in Node ohne den vorherigen Schritt der Transpilierung zu .js.",
+      "REPO": "https://typestrong.org/ts-node/",
+      "ICON": "https://typestrong.org/ts-node/img/favicon/apple-touch-icon.png"
+    },
+    "PNPM": {
+      "TITLE": "pnpm",
+      "PLACEHOLDER": "Z. B. 9.1.0",
+      "DESCRIPTION": "Speichereffizienter Paketmanager.",
+      "USE": "Vermeidung von Abhängigkeitsduplikaten durch Erstellen eines einzigen globalen Repositorys und Verwendung von symbolischen Links.",
+      "REPO": "https://pnpm.io/",
+      "ICON": "https://pnpm.io/img/favicon.png"
+    }
+  },
+  "LOG": {
+    "ERROR_LANG_LOAD": "Sprachen konnten nicht geladen werden: {{error}}",
+    "ERROR_LANG_CHANGE": "Sprache konnte nicht geändert werden: {{lang}}",
+    "ERROR_SYSTEM": "Fehler beim Abrufen der Systemdaten: {{error}}"
+  },
+  "SERVER": {
+    "START": "Verwaltungsserver läuft unter http://localhost:{{port}}",
+    "LANG_NOT_PROVIDED": "Sprache nicht angegeben.",
+    "LANG_CHANGED": "Sprache auf {{lang}} aktualisiert",
+    "LANG_NOT_FOUND": "Die Sprache {{lang}} ist nicht verfügbar.",
+    "UNKNOWN": "Unbekannt",
+    "INVALID_FORMAT": "Ungültiges Format.",
+    "INVALID_TYPE": "Unbekannter Typ",
+    "ERROR": {
+      "DIR_LANGUAGES": "Fehler beim Lesen des Sprachen-Verzeichnisses",
+      "INTERNAL_LANG_ERROR": "Interner Fehler bei der Überprüfung der Sprache"
+    }
+  }
+}
