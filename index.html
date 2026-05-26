@@ -373,7 +373,7 @@
 			});
         }
 
-		// Comprobamos y cargamos los idiomas disponibles
+		// We check and load the available languages
 		async function getLanguages() {
 			try {
 				const langs = await fetch('/api/info/languages').then(r => r.json());
