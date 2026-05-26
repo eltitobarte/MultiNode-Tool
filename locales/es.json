@@ -1,0 +1,157 @@
+{
+	"LANGUAGE": "Español",
+	"GLOBAL": {
+		"TITLE": "Gestor de Entornos",
+		"TERMINAL_TITLE": "Terminal Output"
+	},
+	"INFO": {
+		"ACTUAL_VERSION": "Versión Actual",
+		"ACTUAL_VERSION_GLOBAL": "Versión Actual (Global)",
+		"INSTALLED": "Instaladas",
+		"NOT_INSTALLED": "No instalado",
+		"NOT_DETECTED": "No detectadas",
+		"NOT_INSTALLED_GLOBAL": "No instalado globalmente",
+		"LOADING": "Cargando..."
+	},
+	"MODAL": {
+		"TOOL": "Herramienta",
+		"DESCRIPTION": "Descripción",
+		"USE": "Uso",
+		"REPOSITORY": "Repositorio / Documentación oficial"
+	},
+	"BTNS": {
+		"AVAILABLE": "Ver disponibles",
+		"INSTALL_USE": "Instalar / Usar",
+		"INSTALL_VERSION": "Instalar Versión",
+		"CLEAR_TERMINAL": "Limpiar consola",
+		"INFORMATION": "Información"
+	},
+	"TERMINAL": {
+		"START": "Sistema inicializado. Listo para operar.",
+		"CLEAR": "Consola limpia.",
+		"CHEKING": "Consultando versiones disponibles de {{tool}}... (esto puede tardar)",
+		"NO_VERSIONS": "No se encontrarón versiones de {{tool}}.",
+		"AVAILABLE": "DISPONIBLES ({{tool}})",
+		"ERROR": "Error obteniendo versiones: {{error}}",
+		"ENTER_VALID": "Introduce una versión válida.",
+		"EXECUTING": "Ejecutando orden para {{tool}} v{{version}}... por favor, espera.",
+		"CONN_ERROR": "Error de conexión",
+		"LANGUAGE_CHANGE": "Idioma actualizado a {{lang}}"
+	},
+	"TOOLS": {
+		"NODE": {
+			"TITLE": "Node.js (NVM)",
+			"PLACEHOLDER": "Ej. 20.11.0",
+			"DESCRIPTION": "Entorno de ejecución multiplataforma para JavaScript.",
+			"USE": "Ejecutar código en el servidor. NVM permite cambiar la versión global al vuelo.",
+			"REPO": "https://github.com/nvm-sh/nvm",
+			"ICON": "https://nodejs.org/static/images/favicons/favicon.png"
+		},
+		"ANGULAR": {
+			"TITLE": "Angular CLI",
+			"PLACEHOLDER": "Ej. 17.1.0",
+			"DESCRIPTION": "Interfaz de línea de comandos oficial de Angular.",
+			"USE": "Inicializar, desarrollar, crear andamios (scaffolding) y empaquetar aplicaciones Angular.",
+			"REPO": "https://github.com/angular/angular-cli",
+			"ICON": "https://angular.dev/assets/icons/favicon-48x48.png"
+		},
+		"IONIC": {
+			"TITLE": "Ionic CLI",
+			"PLACEHOLDER": "Ej. 7.2.0",
+			"DESCRIPTION": "Herramienta global para gestionar proyectos Ionic.",
+			"USE": "Crear proyectos desde cero, levantar servidores de desarrollo locales y sincronizar con la nube.",
+			"REPO": "https://github.com/ionic-team/ionic-cli",
+			"ICON": "https://ionicframework.com/favicon-96x96.png"
+		},
+		"CAPACITOR": {
+			"TITLE": "Capacitor CLI",
+			"PLACEHOLDER": "Ej. 6.0.0",
+			"DESCRIPTION": "El puente nativo moderno para web apps.",
+			"USE": "Empaquetar aplicaciones web (Angular, React, Vue) en binarios nativos de iOS y Android.",
+			"REPO": "https://capacitorjs.com/",
+			"ICON": "https://capacitorjs.com/favicon-96x96.png"
+		},
+		"TYPESCRIPT": {
+			"TITLE": "TypeScript",
+			"PLACEHOLDER": "Ej. 5.4.5",
+			"DESCRIPTION": "Superconjunto tipado de JavaScript desarrollado por Microsoft.",
+			"USE": "Validar tipos estáticos y compilar código moderno (ESNext) a JavaScript estándar.",
+			"REPO": "https://www.typescriptlang.org/",
+			"ICON": "https://typescriptlang.org/favicon-32x32.png?v=8944a05a8b601855de116c8a56d3b3ae"
+		},
+		"YARN": {
+			"TITLE": "Yarn",
+			"PLACEHOLDER": "Ej. 1.22.22",
+			"DESCRIPTION": "Gestor de dependencias determinista y rápido.",
+			"USE": "Alternativa a npm que utiliza cachés para instalaciones más rápidas y consistentes.",
+			"REPO": "https://yarnpkg.com/",
+			"ICON": "https://yarnpkg.com/img/yarn-favicon.svg"
+		},
+		"FIREBASE": {
+			"TITLE": "Firebase CLI",
+			"PLACEHOLDER": "Ej. 13.0.0",
+			"DESCRIPTION": "Gestor de servicios de Google Firebase.",
+			"USE": "Desplegar hosting estático, configurar bases de datos en tiempo real y ejecutar emuladores locales.",
+			"REPO": "https://firebase.google.com/docs/cli",
+			"ICON": "https://www.gstatic.com/devrel-devsite/prod/v6ae673272608590539f8a06b3f3271c0f5688cde07499d1c9e644aeb66c8c060/firebase/images/favicon.png"
+		},
+		"NODEMON": {
+			"TITLE": "Nodemon",
+			"PLACEHOLDER": "Ej. 3.1.0",
+			"DESCRIPTION": "Monitor de recarga en caliente para Node.js.",
+			"USE": "Vigilar los archivos del proyecto y reiniciar el proceso automáticamente al guardar un cambio.",
+			"REPO": "https://nodemon.io/",
+			"ICON": "https://nodemon.io/nodemon.svg"
+		},
+		"PM2": {
+			"TITLE": "PM2",
+			"PLACEHOLDER": "Ej. 5.3.1",
+			"DESCRIPTION": "Gestor de procesos y balanceador de carga.",
+			"USE": "Mantener servidores en segundo plano (daemon), reiniciar tras caídas y monitorizar consumo.",
+			"REPO": "https://pm2.keymetrics.io/",
+			"ICON": "https://pm2.keymetrics.io/favicon.ico"
+		},
+		"SERVE": {
+			"TITLE": "Serve (HTTP Estático)",
+			"PLACEHOLDER": "Ej. 14.2.1",
+			"DESCRIPTION": "Servidor HTTP estático ultra-ligero.",
+			"USE": "Levantar la carpeta 'dist' o 'build' generada por un framework para testear la versión de producción localmente.",
+			"REPO": "https://github.com/vercel/serve",
+			"ICON": "https://raw.githubusercontent.com/vercel/serve/main/media/banner.png"
+		},
+		"TSNODE": {
+			"TITLE": "ts-node",
+			"PLACEHOLDER": "Ej. 10.9.2",
+			"DESCRIPTION": "Motor de ejecución directa para TypeScript.",
+			"USE": "Permite ejecutar archivos .ts directamente en Node sin el paso previo de transpilar a .js.",
+			"REPO": "https://typestrong.org/ts-node/",
+			"ICON": "https://typestrong.org/ts-node/img/favicon/apple-touch-icon.png"
+		},
+		"PNPM": {
+			"TITLE": "pnpm",
+			"PLACEHOLDER": "Ej. 9.1.0",
+			"DESCRIPTION": "Gestor de paquetes eficiente con el almacenamiento.",
+			"USE": "Prevenir la duplicación de dependencias creando un único repositorio global y usando enlaces simbólicos.",
+			"REPO": "https://pnpm.io/",
+			"ICON": "https://pnpm.io/img/favicon.png"
+		}
+	},
+	"LOG": {
+		"ERROR_LANG_LOAD": "No se pudieron cargar los idiomas: {{error}}",
+		"ERROR_LANG_CHANGE": "No se pudo cambiar el idioma: {{lang}}",
+		"ERROR_SYSTEM": "Error obteniendo datos del sistema: {{error}}"
+	},
+	"SERVER": {
+		"START": "Servidor de gestión en http://localhost:{{port}}",
+		"LANG_NOT_PROVIDED": "No se ha seleccionado el idioma.",
+		"LANG_CHANGED": "Idioma actualizado a {{lang}}",
+		"LANG_NOT_FOUND": "El idioma {{lang}} no está disponible.",
+		"UNKNOWN": "Desconocida",
+		"INVALID_FORMAT": "Formato inválido.",
+		"INVALID_TYPE": "Tipo desconocido",
+		"ERROR": {
+			"DIR_LANGUAGES": "Error al leer el directorio de idiomas",
+			"INTERNAL_LANG_ERROR": "Error interno verificando el idioma"
+		}
+	}
+}

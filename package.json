@@ -1,0 +1,33 @@
+{
+  "name": "multinode-tool",
+  "version": "1.0.0",
+  "description": "A local tool for dynamically monitoring and managing versions of Node, Angular CLI, Ionic, Capacitor and other development tools.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eltitobarte/MultiNode-Tool.git"
+  },
+  "keywords": [
+    "nvm",
+    "node",
+    "environment",
+    "manager",
+    "cli",
+    "angular",
+    "ionic",
+    "capacitor"
+  ],
+  "author": "Bartosz Karallus <info@etb-apps.com> (https://etb-apps.com)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/eltitobarte/MultiNode-Tool/issues"
+  },
+  "homepage": "https://github.com/eltitobarte/MultiNode-Tool#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

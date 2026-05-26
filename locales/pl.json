@@ -1,0 +1,157 @@
+{
+  "LANGUAGE": "Polski",
+  "GLOBAL": {
+    "TITLE": "Menedżer Środowisk",
+    "TERMINAL_TITLE": "Wyjście Terminala"
+  },
+  "INFO": {
+    "ACTUAL_VERSION": "Obecna Wersja",
+    "ACTUAL_VERSION_GLOBAL": "Obecna Wersja (Globalna)",
+    "INSTALLED": "Zainstalowane",
+    "NOT_INSTALLED": "Nie zainstalowano",
+    "NOT_DETECTED": "Nie wykryto",
+    "NOT_INSTALLED_GLOBAL": "Nie zainstalowano globalnie",
+    "LOADING": "Ładowanie..."
+  },
+  "MODAL": {
+    "TOOL": "Narzędzie",
+    "DESCRIPTION": "Opis",
+    "USE": "Zastosowanie",
+    "REPOSITORY": "Repozytorium / Oficjalna Dokumentacja"
+  },
+  "BTNS": {
+    "AVAILABLE": "Zobacz dostępne",
+    "INSTALL_USE": "Zainstaluj / Użyj",
+    "INSTALL_VERSION": "Zainstaluj Wersję",
+    "CLEAR_TERMINAL": "Wyczyść konsolę",
+    "INFORMATION": "Informacje"
+  },
+  "TERMINAL": {
+    "START": "System zainicjowany. Gotowy do pracy.",
+    "CLEAR": "Konsola wyczyszczona.",
+    "CHEKING": "Sprawdzanie dostępnych wersji dla {{tool}}... (to może chwilę potrwać)",
+    "NO_VERSIONS": "Nie znaleziono wersji dla {{tool}}.",
+    "AVAILABLE": "DOSTĘPNE ({{tool}})",
+    "ERROR": "Błąd pobierania wersji: {{error}}",
+    "ENTER_VALID": "Wprowadź prawidłową wersję.",
+    "EXECUTING": "Wykonywanie polecenia dla {{tool}} v{{version}}... proszę czekać.",
+    "CONN_ERROR": "Błąd połączenia",
+    "LANGUAGE_CHANGE": "Zmieniono język na {{lang}}"
+  },
+  "TOOLS": {
+    "NODE": {
+      "TITLE": "Node.js (NVM)",
+      "PLACEHOLDER": "Np. 20.11.0",
+      "DESCRIPTION": "Wieloplatformowe środowisko uruchomieniowe dla JavaScript.",
+      "USE": "Wykonywanie kodu na serwerze. NVM pozwala na zmianę wersji globalnej w locie.",
+      "REPO": "https://github.com/nvm-sh/nvm",
+      "ICON": "https://nodejs.org/static/images/favicons/favicon.png"
+    },
+    "ANGULAR": {
+      "TITLE": "Angular CLI",
+      "PLACEHOLDER": "Np. 17.1.0",
+      "DESCRIPTION": "Oficjalny interfejs wiersza poleceń dla Angulara.",
+      "USE": "Inicjowanie, rozwijanie, tworzenie szkieletów (scaffolding) i pakowanie aplikacji Angular.",
+      "REPO": "https://github.com/angular/angular-cli",
+      "ICON": "https://angular.dev/assets/icons/favicon-48x48.png"
+    },
+    "IONIC": {
+      "TITLE": "Ionic CLI",
+      "PLACEHOLDER": "Np. 7.2.0",
+      "DESCRIPTION": "Globalne narzędzie do zarządzania projektami Ionic.",
+      "USE": "Tworzenie projektów od podstaw, uruchamianie lokalnych serwerów deweloperskich i synchronizacja z chmurą.",
+      "REPO": "https://github.com/ionic-team/ionic-cli",
+      "ICON": "https://ionicframework.com/favicon-96x96.png"
+    },
+    "CAPACITOR": {
+      "TITLE": "Capacitor CLI",
+      "PLACEHOLDER": "Np. 6.0.0",
+      "DESCRIPTION": "Nowoczesny most natywny dla aplikacji webowych.",
+      "USE": "Pakowanie aplikacji webowych (Angular, React, Vue) do natywnych plików binarnych iOS i Android.",
+      "REPO": "https://capacitorjs.com/",
+      "ICON": "https://capacitorjs.com/favicon-96x96.png"
+    },
+    "TYPESCRIPT": {
+      "TITLE": "TypeScript",
+      "PLACEHOLDER": "Np. 5.4.5",
+      "DESCRIPTION": "Typowany nadzbiór JavaScriptu stworzony przez Microsoft.",
+      "USE": "Walidacja typów statycznych i kompilacja nowoczesnego kodu (ESNext) do standardowego JavaScriptu.",
+      "REPO": "https://www.typescriptlang.org/",
+      "ICON": "https://typescriptlang.org/favicon-32x32.png?v=8944a05a8b601855de116c8a56d3b3ae"
+    },
+    "YARN": {
+      "TITLE": "Yarn",
+      "PLACEHOLDER": "Np. 1.22.22",
+      "DESCRIPTION": "Szybki i deterministyczny menedżer zależności.",
+      "USE": "Alternatywa dla npm, która wykorzystuje pamięć podręczną do szybszych i bardziej spójnych instalacji.",
+      "REPO": "https://yarnpkg.com/",
+      "ICON": "https://yarnpkg.com/img/yarn-favicon.svg"
+    },
+    "FIREBASE": {
+      "TITLE": "Firebase CLI",
+      "PLACEHOLDER": "Np. 13.0.0",
+      "DESCRIPTION": "Menedżer usług Google Firebase.",
+      "USE": "Wdrażanie statycznego hostingu, konfiguracja baz danych w czasie rzeczywistym i uruchamianie lokalnych emulatorów.",
+      "REPO": "https://firebase.google.com/docs/cli",
+      "ICON": "https://www.gstatic.com/devrel-devsite/prod/v6ae673272608590539f8a06b3f3271c0f5688cde07499d1c9e644aeb66c8c060/firebase/images/favicon.png"
+    },
+    "NODEMON": {
+      "TITLE": "Nodemon",
+      "PLACEHOLDER": "Np. 3.1.0",
+      "DESCRIPTION": "Monitor automatycznego przeładowywania (hot-reload) dla Node.js.",
+      "USE": "Śledzenie plików projektu i automatyczne restartowanie procesu po zapisaniu zmian.",
+      "REPO": "https://nodemon.io/",
+      "ICON": "https://nodemon.io/nodemon.svg"
+    },
+    "PM2": {
+      "TITLE": "PM2",
+      "PLACEHOLDER": "Np. 5.3.1",
+      "DESCRIPTION": "Menedżer procesów i load balancer.",
+      "USE": "Utrzymywanie serwerów w tle (daemon), restart po awariach i monitorowanie zużycia zasobów.",
+      "REPO": "https://pm2.keymetrics.io/",
+      "ICON": "https://pm2.keymetrics.io/favicon.ico"
+    },
+    "SERVE": {
+      "TITLE": "Serve (Lekki serwer HTTP)",
+      "PLACEHOLDER": "Np. 14.2.1",
+      "DESCRIPTION": "Ultralekki statyczny serwer HTTP.",
+      "USE": "Uruchamianie folderu 'dist' lub 'build' wygenerowanego przez framework, aby lokalnie przetestować wersję produkcyjną.",
+      "REPO": "https://github.com/vercel/serve",
+      "ICON": "https://raw.githubusercontent.com/vercel/serve/main/media/banner.png"
+    },
+    "TSNODE": {
+      "TITLE": "ts-node",
+      "PLACEHOLDER": "Np. 10.9.2",
+      "DESCRIPTION": "Silnik bezpośredniego wykonywania dla TypeScript.",
+      "USE": "Pozwala na bezpośrednie uruchamianie plików .ts w Node bez uprzedniej transpilacji do .js.",
+      "REPO": "https://typestrong.org/ts-node/",
+      "ICON": "https://typestrong.org/ts-node/img/favicon/apple-touch-icon.png"
+    },
+    "PNPM": {
+      "TITLE": "pnpm",
+      "PLACEHOLDER": "Np. 9.1.0",
+      "DESCRIPTION": "Wydajny menedżer pakietów oszczędzający przestrzeń dyskową.",
+      "USE": "Zapobieganie duplikacji zależności poprzez utworzenie jednego globalnego repozytorium i używanie dowiązań symbolicznych.",
+      "REPO": "https://pnpm.io/",
+      "ICON": "https://pnpm.io/img/favicon.png"
+    }
+  },
+  "LOG": {
+    "ERROR_LANG_LOAD": "Nie udało się wczytać języków: {{error}}",
+    "ERROR_LANG_CHANGE": "Nie udało się zmienić języka: {{lang}}",
+    "ERROR_SYSTEM": "Błąd pobierania danych systemu: {{error}}"
+  },
+  "SERVER": {
+    "START": "Serwer zarządzający uruchomiony pod adresem http://localhost:{{port}}",
+    "LANG_NOT_PROVIDED": "Nie podano języka.",
+    "LANG_CHANGED": "Język zaktualizowany na {{lang}}",
+    "LANG_NOT_FOUND": "Język {{lang}} jest niedostępny.",
+    "UNKNOWN": "Nieznany",
+    "INVALID_FORMAT": "Nieprawidłowy format.",
+    "INVALID_TYPE": "Nieznany typ",
+    "ERROR": {
+      "DIR_LANGUAGES": "Błąd podczas odczytu katalogu z językami",
+      "INTERNAL_LANG_ERROR": "Wewnętrzny błąd weryfikacji języka"
+    }
+  }
+}

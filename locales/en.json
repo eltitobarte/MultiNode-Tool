@@ -1,0 +1,157 @@
+{
+  "LANGUAGE": "English",
+  "GLOBAL": {
+    "TITLE": "Environment Manager",
+    "TERMINAL_TITLE": "Terminal Output"
+  },
+  "INFO": {
+    "ACTUAL_VERSION": "Current Version",
+    "ACTUAL_VERSION_GLOBAL": "Current Version (Global)",
+    "INSTALLED": "Installed",
+    "NOT_INSTALLED": "Not installed",
+    "NOT_DETECTED": "Not detected",
+    "NOT_INSTALLED_GLOBAL": "Not installed globally",
+    "LOADING": "Loading..."
+  },
+  "MODAL": {
+    "TOOL": "Tool",
+    "DESCRIPTION": "Description",
+    "USE": "Usage",
+    "REPOSITORY": "Repository / Official Documentation"
+  },
+  "BTNS": {
+    "AVAILABLE": "View available",
+    "INSTALL_USE": "Install / Use",
+    "INSTALL_VERSION": "Install Version",
+    "CLEAR_TERMINAL": "Clear console",
+    "INFORMATION": "Information"
+  },
+  "TERMINAL": {
+    "START": "System initialized. Ready to operate.",
+    "CLEAR": "Console cleared.",
+    "CHEKING": "Checking available versions for {{tool}}... (this may take a while)",
+    "NO_VERSIONS": "No versions found for {{tool}}.",
+    "AVAILABLE": "AVAILABLE ({{tool}})",
+    "ERROR": "Error fetching versions: {{error}}",
+    "ENTER_VALID": "Please enter a valid version.",
+    "EXECUTING": "Executing order for {{tool}} v{{version}}... please wait.",
+    "CONN_ERROR": "Connection error",
+    "LANGUAGE_CHANGE": "Language updated to {{lang}}"
+  },
+  "TOOLS": {
+    "NODE": {
+      "TITLE": "Node.js (NVM)",
+      "PLACEHOLDER": "Ex. 20.11.0",
+      "DESCRIPTION": "Cross-platform JavaScript runtime environment.",
+      "USE": "Run code on the server. NVM allows changing the global version on the fly.",
+      "REPO": "https://github.com/nvm-sh/nvm",
+      "ICON": "https://nodejs.org/static/images/favicons/favicon.png"
+    },
+    "ANGULAR": {
+      "TITLE": "Angular CLI",
+      "PLACEHOLDER": "Ex. 17.1.0",
+      "DESCRIPTION": "Official Angular command-line interface.",
+      "USE": "Initialize, develop, scaffold, and build Angular applications.",
+      "REPO": "https://github.com/angular/angular-cli",
+      "ICON": "https://angular.dev/assets/icons/favicon-48x48.png"
+    },
+    "IONIC": {
+      "TITLE": "Ionic CLI",
+      "PLACEHOLDER": "Ex. 7.2.0",
+      "DESCRIPTION": "Global tool to manage Ionic projects.",
+      "USE": "Create projects from scratch, spin up local development servers, and sync with the cloud.",
+      "REPO": "https://github.com/ionic-team/ionic-cli",
+      "ICON": "https://ionicframework.com/favicon-96x96.png"
+    },
+    "CAPACITOR": {
+      "TITLE": "Capacitor CLI",
+      "PLACEHOLDER": "Ex. 6.0.0",
+      "DESCRIPTION": "The modern native bridge for web apps.",
+      "USE": "Package web apps (Angular, React, Vue) into native iOS and Android binaries.",
+      "REPO": "https://capacitorjs.com/",
+      "ICON": "https://capacitorjs.com/favicon-96x96.png"
+    },
+    "TYPESCRIPT": {
+      "TITLE": "TypeScript",
+      "PLACEHOLDER": "Ex. 5.4.5",
+      "DESCRIPTION": "Typed superset of JavaScript developed by Microsoft.",
+      "USE": "Validate static types and compile modern code (ESNext) to standard JavaScript.",
+      "REPO": "https://www.typescriptlang.org/",
+      "ICON": "https://typescriptlang.org/favicon-32x32.png?v=8944a05a8b601855de116c8a56d3b3ae"
+    },
+    "YARN": {
+      "TITLE": "Yarn",
+      "PLACEHOLDER": "Ex. 1.22.22",
+      "DESCRIPTION": "Fast and deterministic dependency manager.",
+      "USE": "Alternative to npm that uses caching for faster and more consistent installations.",
+      "REPO": "https://yarnpkg.com/",
+      "ICON": "https://yarnpkg.com/img/yarn-favicon.svg"
+    },
+    "FIREBASE": {
+      "TITLE": "Firebase CLI",
+      "PLACEHOLDER": "Ex. 13.0.0",
+      "DESCRIPTION": "Google Firebase services manager.",
+      "USE": "Deploy static hosting, configure real-time databases, and run local emulators.",
+      "REPO": "https://firebase.google.com/docs/cli",
+      "ICON": "https://www.gstatic.com/devrel-devsite/prod/v6ae673272608590539f8a06b3f3271c0f5688cde07499d1c9e644aeb66c8c060/firebase/images/favicon.png"
+    },
+    "NODEMON": {
+      "TITLE": "Nodemon",
+      "PLACEHOLDER": "Ex. 3.1.0",
+      "DESCRIPTION": "Hot-reload monitor for Node.js.",
+      "USE": "Watch project files and automatically restart the process upon saving a change.",
+      "REPO": "https://nodemon.io/",
+      "ICON": "https://nodemon.io/nodemon.svg"
+    },
+    "PM2": {
+      "TITLE": "PM2",
+      "PLACEHOLDER": "Ex. 5.3.1",
+      "DESCRIPTION": "Process manager and load balancer.",
+      "USE": "Keep servers running in the background (daemon), restart after crashes, and monitor consumption.",
+      "REPO": "https://pm2.keymetrics.io/",
+      "ICON": "https://pm2.keymetrics.io/favicon.ico"
+    },
+    "SERVE": {
+      "TITLE": "Serve (Static HTTP)",
+      "PLACEHOLDER": "Ex. 14.2.1",
+      "DESCRIPTION": "Ultra-lightweight static HTTP server.",
+      "USE": "Serve the 'dist' or 'build' folder generated by a framework to test the production version locally.",
+      "REPO": "https://github.com/vercel/serve",
+      "ICON": "https://raw.githubusercontent.com/vercel/serve/main/media/banner.png"
+    },
+    "TSNODE": {
+      "TITLE": "ts-node",
+      "PLACEHOLDER": "Ex. 10.9.2",
+      "DESCRIPTION": "Direct execution engine for TypeScript.",
+      "USE": "Allows running .ts files directly in Node without the prior step of transpiling to .js.",
+      "REPO": "https://typestrong.org/ts-node/",
+      "ICON": "https://typestrong.org/ts-node/img/favicon/apple-touch-icon.png"
+    },
+    "PNPM": {
+      "TITLE": "pnpm",
+      "PLACEHOLDER": "Ex. 9.1.0",
+      "DESCRIPTION": "Storage-efficient package manager.",
+      "USE": "Prevent dependency duplication by creating a single global repository and using symbolic links.",
+      "REPO": "https://pnpm.io/",
+      "ICON": "https://pnpm.io/img/favicon.png"
+    }
+  },
+  "LOG": {
+    "ERROR_LANG_LOAD": "Could not load languages: {{error}}",
+    "ERROR_LANG_CHANGE": "Could not change language: {{lang}}",
+    "ERROR_SYSTEM": "Error fetching system data: {{error}}"
+  },
+  "SERVER": {
+    "START": "Management server running at http://localhost:{{port}}",
+    "LANG_NOT_PROVIDED": "Language not provided.",
+    "LANG_CHANGED": "Language updated to {{lang}}",
+    "LANG_NOT_FOUND": "The language {{lang}} is not available.",
+    "UNKNOWN": "Unknown",
+    "INVALID_FORMAT": "Invalid format.",
+    "INVALID_TYPE": "Unknown type",
+    "ERROR": {
+      "DIR_LANGUAGES": "Error reading the languages directory",
+      "INTERNAL_LANG_ERROR": "Internal error verifying the language"
+    }
+  }
+}

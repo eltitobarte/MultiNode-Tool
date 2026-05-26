@@ -1,0 +1,157 @@
+{
+  "LANGUAGE": "Русский",
+  "GLOBAL": {
+    "TITLE": "Менеджер сред",
+    "TERMINAL_TITLE": "Вывод терминала"
+  },
+  "INFO": {
+    "ACTUAL_VERSION": "Текущая версия",
+    "ACTUAL_VERSION_GLOBAL": "Текущая версия (Глобальная)",
+    "INSTALLED": "Установлено",
+    "NOT_INSTALLED": "Не установлено",
+    "NOT_DETECTED": "Не обнаружено",
+    "NOT_INSTALLED_GLOBAL": "Не установлено глобально",
+    "LOADING": "Загрузка..."
+  },
+  "MODAL": {
+    "TOOL": "Инструмент",
+    "DESCRIPTION": "Описание",
+    "USE": "Использование",
+    "REPOSITORY": "Репозиторий / Официальная документация"
+  },
+  "BTNS": {
+    "AVAILABLE": "Посмотреть доступные",
+    "INSTALL_USE": "Установить / Использовать",
+    "INSTALL_VERSION": "Установить версию",
+    "CLEAR_TERMINAL": "Очистить консоль",
+    "INFORMATION": "Информация"
+  },
+  "TERMINAL": {
+    "START": "Система инициализирована. Готова к работе.",
+    "CLEAR": "Консоль очищена.",
+    "CHEKING": "Проверка доступных версий для {{tool}}... (это может занять некоторое время)",
+    "NO_VERSIONS": "Версии для {{tool}} не найдены.",
+    "AVAILABLE": "ДОСТУПНЫЕ ({{tool}})",
+    "ERROR": "Ошибка при получении версий: {{error}}",
+    "ENTER_VALID": "Пожалуйста, введите корректную версию.",
+    "EXECUTING": "Выполнение команды для {{tool}} v{{version}}... пожалуйста, подождите.",
+    "CONN_ERROR": "Ошибка подключения",
+    "LANGUAGE_CHANGE": "Язык обновлен на {{lang}}"
+  },
+  "TOOLS": {
+    "NODE": {
+      "TITLE": "Node.js (NVM)",
+      "PLACEHOLDER": "Напр. 20.11.0",
+      "DESCRIPTION": "Кроссплатформенная среда выполнения для JavaScript.",
+      "USE": "Выполнение кода на сервере. NVM позволяет менять глобальную версию 'на лету'.",
+      "REPO": "https://github.com/nvm-sh/nvm",
+      "ICON": "https://nodejs.org/static/images/favicons/favicon.png"
+    },
+    "ANGULAR": {
+      "TITLE": "Angular CLI",
+      "PLACEHOLDER": "Напр. 17.1.0",
+      "DESCRIPTION": "Официальный интерфейс командной строки Angular.",
+      "USE": "Инициализация, разработка, создание каркаса (scaffolding) и сборка приложений Angular.",
+      "REPO": "https://github.com/angular/angular-cli",
+      "ICON": "https://angular.dev/assets/icons/favicon-48x48.png"
+    },
+    "IONIC": {
+      "TITLE": "Ionic CLI",
+      "PLACEHOLDER": "Напр. 7.2.0",
+      "DESCRIPTION": "Глобальный инструмент для управления проектами Ionic.",
+      "USE": "Создание проектов с нуля, запуск локальных серверов разработки и синхронизация с облаком.",
+      "REPO": "https://github.com/ionic-team/ionic-cli",
+      "ICON": "https://ionicframework.com/favicon-96x96.png"
+    },
+    "CAPACITOR": {
+      "TITLE": "Capacitor CLI",
+      "PLACEHOLDER": "Напр. 6.0.0",
+      "DESCRIPTION": "Современный нативный мост для веб-приложений.",
+      "USE": "Упаковка веб-приложений (Angular, React, Vue) в нативные бинарные файлы iOS и Android.",
+      "REPO": "https://capacitorjs.com/",
+      "ICON": "https://capacitorjs.com/favicon-96x96.png"
+    },
+    "TYPESCRIPT": {
+      "TITLE": "TypeScript",
+      "PLACEHOLDER": "Напр. 5.4.5",
+      "DESCRIPTION": "Типизированное надмножество JavaScript, разработанное Microsoft.",
+      "USE": "Проверка статической типизации и компиляция современного кода (ESNext) в стандартный JavaScript.",
+      "REPO": "https://www.typescriptlang.org/",
+      "ICON": "https://typescriptlang.org/favicon-32x32.png?v=8944a05a8b601855de116c8a56d3b3ae"
+    },
+    "YARN": {
+      "TITLE": "Yarn",
+      "PLACEHOLDER": "Напр. 1.22.22",
+      "DESCRIPTION": "Быстрый и детерминированный менеджер зависимостей.",
+      "USE": "Альтернатива npm, использующая кэширование для более быстрой и согласованной установки.",
+      "REPO": "https://yarnpkg.com/",
+      "ICON": "https://yarnpkg.com/img/yarn-favicon.svg"
+    },
+    "FIREBASE": {
+      "TITLE": "Firebase CLI",
+      "PLACEHOLDER": "Напр. 13.0.0",
+      "DESCRIPTION": "Менеджер сервисов Google Firebase.",
+      "USE": "Развертывание статического хостинга, настройка баз данных в реальном времени и запуск локальных эмуляторов.",
+      "REPO": "https://firebase.google.com/docs/cli",
+      "ICON": "https://www.gstatic.com/devrel-devsite/prod/v6ae673272608590539f8a06b3f3271c0f5688cde07499d1c9e644aeb66c8c060/firebase/images/favicon.png"
+    },
+    "NODEMON": {
+      "TITLE": "Nodemon",
+      "PLACEHOLDER": "Напр. 3.1.0",
+      "DESCRIPTION": "Монитор горячей перезагрузки для Node.js.",
+      "USE": "Отслеживание файлов проекта и автоматический перезапуск процесса при сохранении изменений.",
+      "REPO": "https://nodemon.io/",
+      "ICON": "https://nodemon.io/nodemon.svg"
+    },
+    "PM2": {
+      "TITLE": "PM2",
+      "PLACEHOLDER": "Напр. 5.3.1",
+      "DESCRIPTION": "Менеджер процессов и балансировщик нагрузки.",
+      "USE": "Поддержание работы серверов в фоновом режиме (daemon), перезапуск после сбоев и мониторинг потребления ресурсов.",
+      "REPO": "https://pm2.keymetrics.io/",
+      "ICON": "https://pm2.keymetrics.io/favicon.ico"
+    },
+    "SERVE": {
+      "TITLE": "Serve (Статический HTTP)",
+      "PLACEHOLDER": "Напр. 14.2.1",
+      "DESCRIPTION": "Ультралегкий статический HTTP-сервер.",
+      "USE": "Обслуживание папки 'dist' или 'build', сгенерированной фреймворком, для локального тестирования рабочей (production) версии.",
+      "REPO": "https://github.com/vercel/serve",
+      "ICON": "https://raw.githubusercontent.com/vercel/serve/main/media/banner.png"
+    },
+    "TSNODE": {
+      "TITLE": "ts-node",
+      "PLACEHOLDER": "Напр. 10.9.2",
+      "DESCRIPTION": "Движок прямого выполнения для TypeScript.",
+      "USE": "Позволяет запускать файлы .ts напрямую в Node без предварительной транспиляции в .js.",
+      "REPO": "https://typestrong.org/ts-node/",
+      "ICON": "https://typestrong.org/ts-node/img/favicon/apple-touch-icon.png"
+    },
+    "PNPM": {
+      "TITLE": "pnpm",
+      "PLACEHOLDER": "Напр. 9.1.0",
+      "DESCRIPTION": "Эффективный менеджер пакетов, экономящий дисковое пространство.",
+      "USE": "Предотвращение дублирования зависимостей за счет создания единого глобального репозитория и использования символических ссылок.",
+      "REPO": "https://pnpm.io/",
+      "ICON": "https://pnpm.io/img/favicon.png"
+    }
+  },
+  "LOG": {
+    "ERROR_LANG_LOAD": "Не удалось загрузить языки: {{error}}",
+    "ERROR_LANG_CHANGE": "Не удалось изменить язык: {{lang}}",
+    "ERROR_SYSTEM": "Ошибка при получении системных данных: {{error}}"
+  },
+  "SERVER": {
+    "START": "Сервер управления запущен на http://localhost:{{port}}",
+    "LANG_NOT_PROVIDED": "Язык не указан.",
+    "LANG_CHANGED": "Язык обновлен на {{lang}}",
+    "LANG_NOT_FOUND": "Язык {{lang}} недоступен.",
+    "UNKNOWN": "Неизвестно",
+    "INVALID_FORMAT": "Неверный формат.",
+    "INVALID_TYPE": "Неизвестный тип",
+    "ERROR": {
+      "DIR_LANGUAGES": "Ошибка при чтении каталога языков",
+      "INTERNAL_LANG_ERROR": "Внутренняя ошибка при проверке языка"
+    }
+  }
+}
